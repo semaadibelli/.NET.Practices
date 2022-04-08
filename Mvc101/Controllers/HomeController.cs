@@ -11,11 +11,16 @@ namespace Mvc101.Controllers
         private readonly ISmsService _smsService;
         private readonly IEmailService _emailService;
         private readonly IWebHostEnvironment _appEnvironment;
+        private readonly IServiceProvider _serviceProvider;
+        private int id;
+        private Stream fileStream;
 
-        public HomeController(ISmsService smsService, IEmailService emailService)
+        public HomeController(ISmsService smsService, IEmailService emailService, IWebHostEnvironment appEnvironment, IServiceProvider serviceProvider)
         {
             _smsService = smsService;
             _emailService = emailService;
+            _appEnvironment = appEnvironment;
+            _serviceProvider = serviceProvider;
         }
 
         public IActionResult Index()
@@ -29,7 +34,21 @@ namespace Mvc101.Controllers
             var wissenSms = (WissenSmsService)_smsService;
             Debug.WriteLine(wissenSms.EndPoint);
 
-            var fileStream = new FileStream($"{_appEnvironment.WebRootPath}\\files\\portre.jpeg", FileMode.Open);
+            #region Factory Design Pattern uygulaması
+            IEmailService emailService;
+            if(id %2==0)
+            {
+                emailService = _serviceProvider.GetService<SendGridEmailService>();
+
+            }
+            else
+            {
+                emailService = _serviceProvider.GetService<OutlookEmailService>();
+            }
+            #endregion
+
+
+            //var fileStream = new FileStream($"{_appEnvironment.WebRootPath}\\files\\portre.jpeg", FileMode.Open);
 
             _emailService.SendMailAsync(new MailModel()
             {
