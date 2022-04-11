@@ -18,8 +18,6 @@ builder.Services.AddSendGrid(options =>
     options.ApiKey = "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";
 });
 
-
-
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();

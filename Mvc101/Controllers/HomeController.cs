@@ -47,7 +47,6 @@ namespace Mvc101.Controllers
             }
             #endregion
 
-
             //var fileStream = new FileStream($"{_appEnvironment.WebRootPath}\\files\\portre.jpeg", FileMode.Open);
 
             _emailService.SendMailAsync(new MailModel()
@@ -67,7 +66,12 @@ namespace Mvc101.Controllers
                     fileStream
                 }
             });
+                fileStream.Close();
 
+            //parametresi fonk olan fonklar
+            List < MailModel > model = new List<MailModel>();
+            Func<MailModel, string> exp = x => x.Body.ToUpper();
+            var upper = model.Select(exp);
             return View();
         }
 
@@ -78,7 +82,6 @@ namespace Mvc101.Controllers
                 TelefonNo = "12345",
                 Mesaj = "home/index çalıştı"
             });
-
             return View();
         }
 
