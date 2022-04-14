@@ -277,7 +277,34 @@ public class AccountController : Controller
         {
             return View(model);
         }
-        var user = await _userManager.FindByNameAsync(HttpContext.User.Identity!.Name);
+
+        var user = await _userManager.FindByNameAsync(HttpContext.User.Identity.Name);
+        var isAdmin = await _userManager.IsInRoleAsync(user, Roles.Admin);
+        if (model.Email != user.Email && !isAdmin)
+        {
+            await _userManager.RemoveFromRoleAsync(user, Roles.User);
+            await _userManager.AddToRoleAsync(user, Roles.Passive);
+
+            var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+            code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+            var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code },
+                protocol: Request.Scheme);
+
+            var email = new MailModel()
+            {
+                To = new List<EmailModel>
+                {
+                    new EmailModel()
+                        { Address = model.Email, Name = user.UserName }
+                },
+                Body =
+                    $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.",
+                Subject = "Confirm your email"
+            };
+
+            await _emailService.SendMailAsync(email);
+        }
+
         user.Name = model.Name;
         user.Surname=model.Surname;
         user.Email=model.Email;
@@ -296,5 +323,32 @@ public class AccountController : Controller
         }
         return View(model);
     }
+
+    [HttpGet]
+    public IActionResult ChangePassword()
+    {
+        return View();
+    }
+    [HttpPost]
+    public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
+    {
+        var user = await _userManager.FindByNameAsync(HttpContext.User.Identity!.Name);
+
+        var result = await _userManager.ChangePasswordAsync(user, model.EskiPassword, model.NewPassword);
+
+         
+
+        if (result.Succeeded)
+        {
+            ViewBag.Message = "Değiştirme Başarılı";
+        }
+        else
+        {
+            var message = string.Join("<br>", result.Errors.Select(x => x.Description));
+            ViewBag.Message = message;
+        }
+        return View(model);
+    }
+
 
 }
