@@ -7,7 +7,7 @@ namespace Identity101.ViewModels
     {
 
 
-        [Required(ErrorMessage = "eski şifre alanı gereklidir.")]
+        [Required(ErrorMessage = "Eski şifre alanı gereklidir.")]
         [StringLength(100, MinimumLength = 6, ErrorMessage = "Şifreniz minumum 6 karakterli olmalıdır")]
         [Display(Name = "Eski Şifre")]
         [DataType(DataType.Password)]
