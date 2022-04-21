@@ -139,6 +139,11 @@ public class AccountController : Controller
 
         var user = await _userManager.FindByNameAsync(model.UserName);
 
+        if(user == null)
+        {
+            return View(model);
+        }
+
         var result = await _signInManager.PasswordSignInAsync(user, model.Password, model.RememberMe, true);
 
         if (result.Succeeded)

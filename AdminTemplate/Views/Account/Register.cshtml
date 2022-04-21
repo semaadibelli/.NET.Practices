@@ -1,5 +1,4 @@
 ﻿@model RegisterViewModel
-
 @{
     Layout = null;
 }
@@ -59,14 +58,14 @@
                                     <span class="input-icon-addon search-icon">
                                         <i class="mdi mdi-account"></i>
                                     </span>
-                                    <input type="text" asp-for="UserName" class="form-control" placeholder="Username">
+                                    <input asp-for="UserName" class="form-control" placeholder="Username">
                                     <span class="text text-danger" asp-validation-for="UserName"></span>
                                 </div>
                                 <div class="input-icon form-group">
                                     <span class="input-icon-addon search-icon">
                                         <i class="zmdi zmdi-email"></i>
                                     </span>
-                                    <input type="email" class="form-control" asp-for="Email" placeholder="Email">
+                                    <input class="form-control" asp-for="Email" placeholder="Email">
                                     <span class="text text-danger" asp-validation-for="Email"></span>
                                 </div>
                                 <div class="input-icon form-group">
