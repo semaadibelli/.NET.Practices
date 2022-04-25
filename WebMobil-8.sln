@@ -23,11 +23,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5. Gün", "5. Gün", "{DE82
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplication1", "WebApplication1\WebApplication1.csproj", "{6347F076-780A-4B77-8E5B-E2991D1CAA4B}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bootstrap101", "Bootstrap101", "{30848FEE-8C9C-4129-8F7D-1CD16B2F69C0}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6. Gün", "6. Gün", "{F3DEB310-FE6E-4141-9C07-75DC122C5E65}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdminTemplate", "AdminTemplate\AdminTemplate.csproj", "{2DFDD9CF-02CA-4877-ABE5-31EB2B5CC3CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdminTemplate", "AdminTemplate\AdminTemplate.csproj", "{2DFDD9CF-02CA-4877-ABE5-31EB2B5CC3CA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
