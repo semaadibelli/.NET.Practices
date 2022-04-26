@@ -59,4 +59,34 @@ var diziDongu2 = () => {
         console.log("itself: " + itself);       
     });
 };
+//----------------------------------------------------------------//
+// bütün elemanları kontrol edip ilk tekrar edeni ekrana yazsın
+var a=[1, 2, 3, 4, 5, 6, 6, 8, 9, 10, 2, 2]; // return 6
+var b=[2, 4, 5, 3, 1, 1, 3, 4, 5, 5]; // return 1
+// Hoca Çözüm
+function checkRepeat(array) {
+    var distinct = [];
+    for (var i = 1; i < array.length; i++) {
+        var item1 = array[i-1];
+        var item2 = array[i];
+        if (item1 == item2 && distinct.indexOf(item1) == -1) {
+            distinct.push(item1);
+        }
+    }
+    return distinct.toString();
+  }
+console.log(checkRepeat(a));
+console.log(checkRepeat(b));
 
+//Mert Çözüm
+function firstRepeat(arr){
+    var resArr = []
+
+    for(let i=0; i<arr.length-1; i++){
+        if(arr[i] === arr[i+1] && !resArr.includes(arr[i])){
+            resArr.push(arr[i]);
+            i++
+        }
+    }
+    return resArr;
+}
