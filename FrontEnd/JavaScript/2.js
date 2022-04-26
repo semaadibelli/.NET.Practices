@@ -78,7 +78,7 @@ function checkRepeat(array) {
 console.log(checkRepeat(a));
 console.log(checkRepeat(b));
 
-//Mert Çözüm
+// Mert Çözüm
 function firstRepeat(arr){
     var resArr = []
 
