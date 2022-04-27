@@ -1,6 +1,6 @@
 console.log("4.js dosyası çalıştı.");
 
-// Geolocation
+// Geolocationn
 var getLocation = () => {
     if(navigator.geolocation){
         navigator.geolocation.getCurrentPosition(showPosition);
