@@ -14,5 +14,11 @@ var changeColor=() => {
     pickerDiv.style.backgroundColor=color;
     pickerDiv.style.color=colorRev;
 }
+var copyClipboard =() =>{ //arrow function
+    var pickerDiv=document.getElementById("picker-div");
+    navigator.clipboard.writeText(pickerDiv.innerHTML);
+    alert("Kopyalandı: " + pickerDiv.innerHTML);
+
+}
 
 changeColor();
