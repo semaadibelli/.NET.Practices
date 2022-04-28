@@ -1,5 +1,5 @@
 //GeoLocation
-//konumumuzu buluyor
+
 var initMap = () => {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
@@ -47,10 +47,10 @@ var showPosition = (position) => {
         infowindow.close();
         marker.setVisible(false);
 
-        const place = autocomplete.getPlace();
+        place = autocomplete.getPlace();
         console.log(place);
         if (!place.geometry || !place.geometry.location) {
-            window.alert("No details available for input: '" + place.name + "'");
+            alert("No details available for input: '" + place.name + "'");
             return;
         }
 
@@ -70,3 +70,15 @@ var showPosition = (position) => {
         infowindow.open(map, marker);
     });
 }
+const addPlace = () => {
+    if (place != null) {
+        places.push({
+            name: place.name,
+            id: place.place_id,
+        });
+        console.log(places);
+    }
+}
+
+let place = null;
+let places = [];
