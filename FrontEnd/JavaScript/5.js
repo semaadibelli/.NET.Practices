@@ -1,5 +1,5 @@
 //GeoLocation
-
+//konumumuzu buluyor
 var initMap = () => {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
@@ -23,7 +23,7 @@ var showPosition = (position) => {
     const card = document.getElementById("pac-card");
     const input = document.getElementById("pac-input");
     const options = {
-        fields: ["formatted_address", "geometry", "name"],
+        fields: ["formatted_address", "geometry", "name", "place_id"],
         strictBounds: false,
         types: ["establishment"],
     };
