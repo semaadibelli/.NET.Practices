@@ -1,4 +1,4 @@
-console.log("4.js dosyası çalıştı.");
+console.log("4.js dosyası çalıştı..");
 
 // Geolocationn
 var initMap = () => {
