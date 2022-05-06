@@ -24,6 +24,7 @@ namespace AdminTemplate.Controllers.Apis
         //post, put, delete işlemlerinde data gönderilir
         //encode-decode
         //veriyi çekemediysem sunucu hatası olmuştur
+        //
 
         [HttpGet]
         public IActionResult All()
