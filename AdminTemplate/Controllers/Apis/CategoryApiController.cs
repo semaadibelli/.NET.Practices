@@ -1,4 +1,5 @@
 ﻿using AdminTemplate.Data;
+using AdminTemplate.Models.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,12 +15,15 @@ namespace AdminTemplate.Controllers.Apis
         {
             _context = context;
         }
-        //CRUD -- Create Read Update Delete
-
+        //CRUD = Create, Read, Update, Delete
         //[HttpGet] Read (SELECT)
         //[HttpPost] Create (INSERT)
         //[HttpPut] Update (UPDATE)
         //[HttpDelete] Delete (DELETE)
+        //get ile data gönderilemez, header bilgisi gönderilir(querystring)
+        //post, put, delete işlemlerinde data gönderilir
+        //encode-decode
+        //veriyi çekemediysem sunucu hatası olmuştur
 
         [HttpGet]
         public IActionResult All()
@@ -31,6 +35,26 @@ namespace AdminTemplate.Controllers.Apis
             catch (Exception ex)
             {
                 return BadRequest(new { Message = $"Bir hata oluştu: {ex.Message}" });
+            }
+        }
+
+        [HttpPost]
+        public IActionResult Add(Category model)
+        {
+            try
+            {
+                model.CreatedUser = HttpContext.User.Identity!.Name;
+                _context.Categories.Add(model);
+                var result = _context.SaveChanges();
+                return Ok(new
+                {
+                    Success = true,
+                    Message = $"{model.Name} isimli kategori başarıyla eklendi."
+                });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { Message = $"Bir hata oluştu: {ex.Message}!" });
             }
         }
 
