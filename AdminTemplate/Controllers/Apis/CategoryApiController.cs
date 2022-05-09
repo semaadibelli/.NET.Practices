@@ -5,9 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AdminTemplate.Controllers.Apis
 {
-    [Route("api/[controller]/[action]")]
+    //[Route("api/[controller]/[action]/{id?}")]
     [ApiController]
-    public class CategoryApiController : ControllerBase
+    public class CategoryApiController : BaseApiController
     {
         private readonly MyContext _context;
 
@@ -15,16 +15,12 @@ namespace AdminTemplate.Controllers.Apis
         {
             _context = context;
         }
-        //CRUD = Create, Read, Update, Delete
+        //CRUD -- Create Read Update Delete
+
         //[HttpGet] Read (SELECT)
         //[HttpPost] Create (INSERT)
         //[HttpPut] Update (UPDATE)
         //[HttpDelete] Delete (DELETE)
-        //get ile data gönderilemez, header bilgisi gönderilir(querystring)
-        //post, put, delete işlemlerinde data gönderilir
-        //encode-decode
-        //veriyi çekemediysem sunucu hatası olmuştur
-        //
 
         [HttpGet]
         public IActionResult All()
@@ -46,18 +42,59 @@ namespace AdminTemplate.Controllers.Apis
             {
                 model.CreatedUser = HttpContext.User.Identity!.Name;
                 _context.Categories.Add(model);
-                var result = _context.SaveChanges();
+                _context.SaveChanges();
                 return Ok(new
                 {
                     Success = true,
-                    Message = $"{model.Name} isimli kategori başarıyla eklendi."
+                    Message = $"{model.Name} isimli kategori başarıyla eklendi"
                 });
             }
             catch (Exception ex)
             {
-                return BadRequest(new { Message = $"Bir hata oluştu: {ex.Message}!" });
+                return BadRequest(new { Message = $"Bir hata oluştu: {ex.Message}" });
             }
         }
 
+        [HttpGet]
+        public IActionResult Detail(int id = 0)
+        {
+            try
+            {
+                return Ok(_context.Categories.Find(id));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { Message = $"Bir hata oluştu: {ex.Message}" });
+            }
+        }
+
+        [HttpPut]
+        public IActionResult Update(int id, Category model)
+        {
+            try
+            {
+                var category = _context.Categories.Find(id);
+
+                if (category == null)
+                {
+                    return NotFound(new { Message = $"{id} numaralı kategori bulunamadı" });
+                }
+
+                category.Name = model.Name;
+                category.Description = model.Description;
+                category.UpdatedUser = HttpContext.User.Identity!.Name;
+                category.UpdatedDate = DateTime.UtcNow;
+                _context.SaveChanges();
+                return Ok(new
+                {
+                    Success = true,
+                    Message = $"{category.Name} isimli kategori başarıyla güncellendi"
+                });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { Message = $"Bir hata oluştu: {ex.Message}" });
+            }
+        }
     }
 }
