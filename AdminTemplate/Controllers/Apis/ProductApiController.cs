@@ -15,13 +15,13 @@ namespace AdminTemplate.Controllers.Apis
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult All()
         {
             var products = _context.Products.ToList();
             return Ok(products);
         }
         [HttpGet("{id:int")]
-        public IActionResult Get(int id)
+        public IActionResult Detail(Guid id)
         {
             var product = _context.Products.Find(id);
             return Ok(product);
