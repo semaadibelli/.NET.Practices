@@ -20,7 +20,7 @@ namespace AdminTemplate.Controllers.Apis
             var products = _context.Products.ToList();
             return Ok(products);
         }
-        [HttpGet("{id:int")]
+        [HttpGet("{id:Guid")]
         public IActionResult Detail(Guid id)
         {
             var product = _context.Products.Find(id);
