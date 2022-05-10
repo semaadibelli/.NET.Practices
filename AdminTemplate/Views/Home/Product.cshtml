@@ -84,7 +84,7 @@
 @section Scripts {
 <script>
     $(()=>{
-        getProducts();
+        GetProducts();
         $("#switch").on("change", ()=>{
             console.log("değişti")
             if ($("#switch").is(":checked")) {
@@ -98,7 +98,6 @@
                     $("#cardListProduct").attr("class", "col-md-12");
                 });
             }
-
         });
         $("#formProduct").on("submit", (e)=>{
             e.preventDefault();
@@ -131,6 +130,7 @@
                 description: $("#txtUpdateUnitPrice").val(),
                 id: $("#txtUpdateProductId").val()
             };
+            console.log(data);
 
             $.ajax({
                 url: "../../api/productapi/update/" + data.id,
@@ -151,7 +151,7 @@
         });
     });
 
-    const getProducts = () => {
+    const GetProducts = () => {
         var settings = {
             url:"../../api/productapi/all",
             method: "GET"
@@ -245,12 +245,10 @@
                         }
                     });
                 });
-
             div.append(btnUpdate).append(btnDelete).appendTo(li);
-            listProduct.append(li);
-        
-        });
-    };
+            listProduct.append(li);      
+    });
+};
 
 
 
