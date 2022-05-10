@@ -2,6 +2,7 @@
 using AdminTemplate.Models.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace AdminTemplate.Controllers.Apis
 {
@@ -9,28 +10,32 @@ namespace AdminTemplate.Controllers.Apis
     public class ProductApiController : BaseApiController
     {
         private readonly MyContext _context;
+
         public ProductApiController(MyContext context)
         {
-            _context = _context;
+            _context = context;
         }
 
         [HttpGet]
         public IActionResult All()
         {
-            var products = _context.Products.ToList();
+            var products = _context.Products.Include(x => x.Category).ToList();
             return Ok(products);
         }
-        [HttpGet("{id:Guid")]
+
+        [HttpGet]
         public IActionResult Detail(Guid id)
         {
             var product = _context.Products.Find(id);
             return Ok(product);
         }
+
         [HttpPost]
         public IActionResult Add(Product model)
         {
             try
             {
+                model.CreatedUser = HttpContext.User.Identity!.Name;
                 _context.Products.Add(model);
                 _context.SaveChanges();
                 return Ok(new
@@ -49,8 +54,8 @@ namespace AdminTemplate.Controllers.Apis
             }
         }
 
-        [HttpPut("{id:int}")]
-        public IActionResult Update(int id, Product model)
+        [HttpPut]
+        public IActionResult Update(Guid id, Product model)
         {
             try
             {
@@ -59,7 +64,8 @@ namespace AdminTemplate.Controllers.Apis
                 {
                     return NotFound(new { Success = false, Message = "Ürün bulunamadı" });
                 }
-
+                model.UpdatedUser = HttpContext.User.Identity!.Name;
+                model.UpdatedDate = DateTime.UtcNow;
                 product.Name = model.Name;
                 product.UnitPrice = model.UnitPrice;
                 product.CategoryId = model.CategoryId;
@@ -80,8 +86,8 @@ namespace AdminTemplate.Controllers.Apis
             }
         }
 
-        [HttpDelete("{id:int}")]
-        public IActionResult Delete(int id)
+        [HttpDelete]
+        public IActionResult Delete(Guid id)
         {
             try
             {

@@ -30,7 +30,13 @@ public class HomeController : Controller
         return View(model);
     }
     [HttpGet, Authorize]
-    public IActionResult Category ()
+    public IActionResult Category()
+    {
+        return View();
+    }
+
+    [HttpGet, Authorize]
+    public IActionResult Product()
     {
         return View();
     }
