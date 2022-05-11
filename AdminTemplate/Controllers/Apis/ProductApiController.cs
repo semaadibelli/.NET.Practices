@@ -1,5 +1,7 @@
 ﻿using AdminTemplate.Data;
+using AdminTemplate.Dtos;
 using AdminTemplate.Models.Entities;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -10,17 +12,25 @@ namespace AdminTemplate.Controllers.Apis
     public class ProductApiController : BaseApiController
     {
         private readonly MyContext _context;
-
-        public ProductApiController(MyContext context)
+        private readonly IMapper _mapper;
+        public ProductApiController(MyContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         [HttpGet]
         public IActionResult All()
         {
-            var products = _context.Products.Include(x => x.Category).ToList();
-            return Ok(products);
+            try
+            {
+                var products = _context.Products.Include(x => x.Category).ToList().Select(x => _mapper.Map<ProductDto>(x)).ToList();
+                return Ok(products);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { Message = $"Bir hata oluştu: {ex.Message}" });
+            }
         }
 
         [HttpGet]
@@ -31,12 +41,14 @@ namespace AdminTemplate.Controllers.Apis
         }
 
         [HttpPost]
-        public IActionResult Add(Product model)
+        public IActionResult Add(ProductDto model)
         {
             try
             {
-                model.CreatedUser = HttpContext.User.Identity!.Name;
-                _context.Products.Add(model);
+                var data = _mapper.Map<Product>(model);
+
+                data.CreatedUser = HttpContext.User.Identity!.Name;
+                _context.Products.Add(data);
                 _context.SaveChanges();
                 return Ok(new
                 {
@@ -55,7 +67,7 @@ namespace AdminTemplate.Controllers.Apis
         }
 
         [HttpPut]
-        public IActionResult Update(Guid id, Product model)
+        public IActionResult Update(Guid id, ProductDto model)
         {
             try
             {
@@ -64,8 +76,9 @@ namespace AdminTemplate.Controllers.Apis
                 {
                     return NotFound(new { Success = false, Message = "Ürün bulunamadı" });
                 }
-                model.UpdatedUser = HttpContext.User.Identity!.Name;
-                model.UpdatedDate = DateTime.UtcNow;
+                product.UpdatedUser = HttpContext.User.Identity!.Name;
+                product.UpdatedDate = DateTime.UtcNow;
+
                 product.Name = model.Name;
                 product.UnitPrice = model.UnitPrice;
                 product.CategoryId = model.CategoryId;
