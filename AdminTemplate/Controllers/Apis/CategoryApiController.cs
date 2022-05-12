@@ -2,7 +2,6 @@
 using AdminTemplate.Dtos;
 using AdminTemplate.Models.Entities;
 using AutoMapper;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AdminTemplate.Controllers.Apis
@@ -32,6 +31,7 @@ namespace AdminTemplate.Controllers.Apis
             try
             {
                 var data = _context.Categories
+                    //.Include(x => x.Products)
                     .ToList()
                     .Select(x => _mapper.Map<CategoryDto>(x))
                     .ToList();
@@ -106,7 +106,6 @@ namespace AdminTemplate.Controllers.Apis
                 {
                     return NotFound(new { Message = $"{id} numaralı kategori bulunamadı" });
                 }
-
                 category.Name = model.Name;
                 category.Description = model.Description;
                 //category = _mapper.Map<Category>(model);

@@ -1,33 +1,34 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
-    <PropertyGroup>
-        <TargetFramework>net6.0</TargetFramework>
-        <Nullable>enable</Nullable>
-        <ImplicitUsings>enable</ImplicitUsings>
-    </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
 
-    <ItemGroup>
-      <Compile Remove="Pages\**" />
-      <Content Remove="Pages\**" />
-      <EmbeddedResource Remove="Pages\**" />
-      <None Remove="Pages\**" />
-    </ItemGroup>
+	<ItemGroup>
+		<Compile Remove="Pages\**" />
+		<Content Remove="Pages\**" />
+		<EmbeddedResource Remove="Pages\**" />
+		<None Remove="Pages\**" />
+	</ItemGroup>
 
-    <ItemGroup>
-        <Folder Include="wwwroot\assets" />
-    </ItemGroup>
+	<ItemGroup>
+		<Folder Include="BusinessLogic\NewFolder\" />
+		<Folder Include="wwwroot\assets" />
+	</ItemGroup>
 
-    <ItemGroup>
-        <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
-        <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="6.0.5" />
-        <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.2.0" />
-        <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.5" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.5" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.5">
-            <PrivateAssets>all</PrivateAssets>
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        </PackageReference>
-        <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="6.0.5" />
-    </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="6.0.5" />
+		<PackageReference Include="Microsoft.AspNetCore.Session" Version="2.2.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.5" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.5" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.5">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="6.0.5" />
+	</ItemGroup>
 
 </Project>

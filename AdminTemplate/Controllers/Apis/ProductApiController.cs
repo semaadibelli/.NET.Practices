@@ -13,6 +13,7 @@ namespace AdminTemplate.Controllers.Apis
     {
         private readonly MyContext _context;
         private readonly IMapper _mapper;
+
         public ProductApiController(MyContext context, IMapper mapper)
         {
             _context = context;
@@ -22,21 +23,18 @@ namespace AdminTemplate.Controllers.Apis
         [HttpGet]
         public IActionResult All()
         {
-            try
-            {
-                var products = _context.Products.Include(x => x.Category).ToList().Select(x => _mapper.Map<ProductDto>(x)).ToList();
-                return Ok(products);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new { Message = $"Bir hata oluştu: {ex.Message}" });
-            }
+            var products = _context.Products.Include(x => x.Category)
+                .ToList()
+                .Select(x => _mapper.Map<ProductDto>(x))
+                .ToList();
+
+            return Ok(products);
         }
 
         [HttpGet]
         public IActionResult Detail(Guid id)
         {
-            var product = _context.Products.Find(id);
+            var product = _mapper.Map<ProductDto>(_context.Products.Find(id));
             return Ok(product);
         }
 
@@ -46,14 +44,13 @@ namespace AdminTemplate.Controllers.Apis
             try
             {
                 var data = _mapper.Map<Product>(model);
-
                 data.CreatedUser = HttpContext.User.Identity!.Name;
                 _context.Products.Add(data);
                 _context.SaveChanges();
                 return Ok(new
                 {
                     Success = true,
-                    Message = $"{model.Name} isimli ürün kaydedildi"
+                    Message = $"{data.Name} isimli ürün kaydedildi"
                 });
             }
             catch (Exception ex)
@@ -76,9 +73,8 @@ namespace AdminTemplate.Controllers.Apis
                 {
                     return NotFound(new { Success = false, Message = "Ürün bulunamadı" });
                 }
-                product.UpdatedUser = HttpContext.User.Identity!.Name;
-                product.UpdatedDate = DateTime.UtcNow;
-
+                model.UpdatedUser = HttpContext.User.Identity!.Name;
+                model.UpdatedDate = DateTime.UtcNow;
                 product.Name = model.Name;
                 product.UnitPrice = model.UnitPrice;
                 product.CategoryId = model.CategoryId;
