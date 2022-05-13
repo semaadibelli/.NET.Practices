@@ -8,5 +8,6 @@ namespace AdminTemplate.ViewModels.Dashboard
         public int Count { get; set; }
         [Display(Name = "Toplam")]
         public decimal Total { get; set; }
+        public string Name { get; internal set; }
     }
 }
