@@ -29,19 +29,21 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdminTemplate", "AdminTempl
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "7. Gün", "7. Gün", "{9A2A00EB-EC78-4FCB-9E82-DDDC6DA09D43}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WissenShop.Web", "WissenShop.Web\WissenShop.Web.csproj", "{84CF0133-661E-40BF-8D43-0F08C9C03BD0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WissenShop.Web", "WissenShop.Web\WissenShop.Web.csproj", "{84CF0133-661E-40BF-8D43-0F08C9C03BD0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WissenShop.Data", "WissenShop.Data\WissenShop.Data.csproj", "{FB8BA0DD-BEBE-4323-AA3C-4BEB9E427942}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WissenShop.Data", "WissenShop.Data\WissenShop.Data.csproj", "{FB8BA0DD-BEBE-4323-AA3C-4BEB9E427942}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WissenShop.Core", "WissenShop.Core\WissenShop.Core.csproj", "{9E8495D6-75B6-4FB1-AAF8-716816F55880}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WissenShop.Core", "WissenShop.Core\WissenShop.Core.csproj", "{9E8495D6-75B6-4FB1-AAF8-716816F55880}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WissenShop.Business", "WissenShop.Business\WissenShop.Business.csproj", "{BB3F8A07-EB2D-4D3D-828C-5E48E34506B5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WissenShop.Business", "WissenShop.Business\WissenShop.Business.csproj", "{BB3F8A07-EB2D-4D3D-828C-5E48E34506B5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backends", "Backends", "{6F3F6916-C252-46E3-B8E7-0898596A691B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WissenShop.Web.Core", "WissenShop.Web.Core\WissenShop.Web.Core.csproj", "{5B77CD31-BAC2-49AE-8A21-FB631C740CA0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WissenShop.Web.Core", "WissenShop.Web.Core\WissenShop.Web.Core.csproj", "{5B77CD31-BAC2-49AE-8A21-FB631C740CA0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FrontEnds", "FrontEnds", "{A51873EB-3D8B-4EC1-8D25-4546C4D6FA3D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WissenShop.Web2", "WissenShop.Web2\WissenShop.Web2.csproj", "{C07E5D54-4736-4C9A-95F7-A727B52D999D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -93,6 +95,10 @@ Global
 		{5B77CD31-BAC2-49AE-8A21-FB631C740CA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5B77CD31-BAC2-49AE-8A21-FB631C740CA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5B77CD31-BAC2-49AE-8A21-FB631C740CA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C07E5D54-4736-4C9A-95F7-A727B52D999D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C07E5D54-4736-4C9A-95F7-A727B52D999D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C07E5D54-4736-4C9A-95F7-A727B52D999D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C07E5D54-4736-4C9A-95F7-A727B52D999D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -111,6 +117,7 @@ Global
 		{6F3F6916-C252-46E3-B8E7-0898596A691B} = {9A2A00EB-EC78-4FCB-9E82-DDDC6DA09D43}
 		{5B77CD31-BAC2-49AE-8A21-FB631C740CA0} = {6F3F6916-C252-46E3-B8E7-0898596A691B}
 		{A51873EB-3D8B-4EC1-8D25-4546C4D6FA3D} = {9A2A00EB-EC78-4FCB-9E82-DDDC6DA09D43}
+		{C07E5D54-4736-4C9A-95F7-A727B52D999D} = {A51873EB-3D8B-4EC1-8D25-4546C4D6FA3D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D57083F0-E72C-4B16-A028-C7AB242E7EA5}
