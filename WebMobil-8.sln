@@ -43,7 +43,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WissenShop.Web.Core", "Wiss
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FrontEnds", "FrontEnds", "{A51873EB-3D8B-4EC1-8D25-4546C4D6FA3D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WissenShop.Web2", "WissenShop.Web2\WissenShop.Web2.csproj", "{C07E5D54-4736-4C9A-95F7-A727B52D999D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WissenShop.Web2", "WissenShop.Web2\WissenShop.Web2.csproj", "{C07E5D54-4736-4C9A-95F7-A727B52D999D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "8. Gün", "8. Gün", "{9B4C72DC-51ED-4611-B304-9A43D1319A75}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
