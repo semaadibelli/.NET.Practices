@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
+using North.Businesss.MapperProfiles;
 using North.Businesss.Repositories;
 using North.Businesss.Repositories.Abstracts;
+using North.Businesss.Services.Payment;
 using North.Core.Entities;
 using North.Data;
 
@@ -15,9 +17,14 @@ builder.Services.AddDbContext<NorthwindContext>(options =>
 builder.Services.AddScoped<IRepository<Category, int>, CategoryRepo>();
 builder.Services.AddScoped<IRepository<Product, int>, ProductRepo>();
 builder.Services.AddScoped<IRepository<Order, int>, OrderRepo>();
+builder.Services.AddTransient<IPaymentService, IyzicoPaymentService>();
+builder.Services.AddAutoMapper(options =>
+{
+    options.AddProfile<PaymentProfile>();
+});
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
 var app = builder.Build();
 
